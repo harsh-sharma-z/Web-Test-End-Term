@@ -1,67 +1,120 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
+<!doctype html>
+<html lang="en">
 
-body {
-    background: #2980b9;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2c3e50, rgb(168, 117, 7));
-    background: linear-gradient(to right, #d5d5d5, rgb(168, 117, 7));
-}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Javascript Playground</title>
+    <link rel="stylesheet" href="style.css">
 
-#headcard {
-    width: 73%;
-    height: 55vh;
-    margin: 20px auto;
-    border-radius: 1rem;
-    background-image: url(./images/banner.png);
-    background-position: center;
-    box-shadow: 0 0 10px black;
-    padding-top: 3rem;
-}
+    <script src="https://kit.fontawesome.com/9664c8b16b.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="/script.js"></script>
+</head>
 
-#headcard div {
-    width: 70%;
-    margin: auto;
-    background: rgba( 0, 0, 0, 0.45);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37);
-    backdrop-filter: blur( 8.5px);
-    -webkit-backdrop-filter: blur( 8.5px);
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18);
-    padding: .5rem;
-    border-radius: 1rem;
-}
+<body>
+    <div id="headcard">
+        <div>
+            <p>Javascript Playground</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <h2 class="card-header" id="fileName">Book Title</h2>
+                    <div class="card-body">
+                        <div class="displayBox scroll-box" id="fileContent">
+                            Select a book on the right
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="keyword" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button" onclick="performMark()">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer" id="searchstat">
 
-#headcard div p {
-    text-align: center;
-    color: rgb(236, 236, 236);
-    font-size: 3.5rem;
-}
+                    </div>
+                </div>
+                <!--Select a Book Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Select a Book</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#" onclick="loadBook('AliceInWonderland.txt','Alice in Wonderland')">Alice in
+                                            Wonderland</a></li>
+                                    <li><a href="#" onclick="loadBook('LOTR.txt','Lord of the Rings')">Lord of the
+                                            Rings</a></li>
+                                    <li><a href="#" onclick="loadBook('JekyllAndHyde.txt','Dr Jekyll and Mr. Hyde')">Dr
+                                            Jekyll and Mr. Hyde</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Most Used Words-->
+                <div class="card my-4">
+                    <h5 class="card-header">Most Used Words</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled mb-0" id="mostUsed">
 
-.responsive {
-    max-width: 75%;
-    height: auto;
-}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Least Used Words -->
+                <div class="card my-4">
+                    <h5 class="card-header">Least Used Words</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-unstyled mb-0" id="leastUsed">
 
-img {
-    padding: 15px;
-}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Document Stats-->
+                <div class="card my-4">
+                    <h5 class="card-header">Document Stats</h5>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li id="docLength"></li>
+                            <li id="wordCount"></li>
+                            <li id="charCount"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-.displayBox {
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-}
+        <a href="./index2.html" id="next">Next</a>
+        <script id="template-ul-items" type="text/template">
+            <li>
+                {{val}}
+            </li>
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+</body>
 
-.scroll-box {
-    overflow-y: auto;
-    height: 500px;
-    float: left;
-    padding: 1rem;
-}
-
-.mb-4 {
-    margin-top: 25px;
-}
+</html>
