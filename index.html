@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Javascript Playground</title>
@@ -9,7 +11,7 @@
 
     <script src="https://kit.fontawesome.com/9664c8b16b.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="/script.js"></script>
+    <script src="./script.js"></script>
 </head>
 
 <body>
@@ -45,25 +47,23 @@
 
                     </div>
                 </div>
-                <!--Select a Book Widget -->
                 <div class="card my-4">
                     <h5 class="card-header">Select a Book</h5>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#" onclick="loadBook('AliceInWonderland.txt','Alice in Wonderland')">Alice in
+                                    <li><a href="#" onclick="findBook('AliceInWonderland.txt','Alice in Wonderland')">Alice in
                                             Wonderland</a></li>
-                                    <li><a href="#" onclick="loadBook('LOTR.txt','Lord of the Rings')">Lord of the
+                                    <li><a href="#" onclick="findBook('LOTR.txt','Lord of the Rings')">Lord of the
                                             Rings</a></li>
-                                    <li><a href="#" onclick="loadBook('JekyllAndHyde.txt','Dr Jekyll and Mr. Hyde')">Dr
+                                    <li><a href="#" onclick="findBook('JekyllAndHyde.txt','Dr Jekyll and Mr. Hyde')">Dr
                                             Jekyll and Mr. Hyde</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--Most Used Words-->
                 <div class="card my-4">
                     <h5 class="card-header">Most Used Words</h5>
                     <div class="card-body">
@@ -76,7 +76,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Least Used Words -->
                 <div class="card my-4">
                     <h5 class="card-header">Least Used Words</h5>
                     <div class="card-body">
@@ -89,7 +88,6 @@
                         </div>
                     </div>
                 </div>
-                <!--Document Stats-->
                 <div class="card my-4">
                     <h5 class="card-header">Document Stats</h5>
                     <div class="card-body">
@@ -102,8 +100,8 @@
                 </div>
             </div>
         </div>
-
         <a href="./index2.html" id="next">Next</a>
+        <br><br><br><br><br><br><br><br>
         <script id="template-ul-items" type="text/template">
             <li>
                 {{val}}
