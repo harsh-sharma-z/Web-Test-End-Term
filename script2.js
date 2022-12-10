@@ -1,32 +1,37 @@
-const cards = document.querySelectorAll(".card"),
-    timeTag = document.querySelector(".time b"),
-    flipsTag = document.querySelector(".flips b"),
-    refreshBtn = document.querySelector(".details button");
+const caRDS__ = document.querySelectorAll(".card"),
+    time__ = document.querySelector(".time b"),
+    FLIPS = document.querySelector(".flips b"),
+    rfsBTN = document.querySelector(".details button");
 
-let maxTime = 20;
-let timeLeft = maxTime;
-let flips = 0;
+
+
+
+let max_TIME = 20;
+let leftTIME = max_TIME;
+let current_flips = 0;
 let matchedCard = 0;
 let disableDeck = false;
-let isPlaying = false;
+let isPla___ = false;
 let cardOne, cardTwo, timer;
 
-function initTimer() {
-    if (timeLeft <= 0) {
+
+
+function intialTIMER() {
+    if (leftTIME <= 0) {
         return clearInterval(timer);
     }
-    timeLeft--;
-    timeTag.innerText = timeLeft;
+    leftTIME--;
+    time__.innerText = leftTIME;
 }
 
-function flipCard({ target: clickedCard }) {
-    if (!isPlaying) {
-        isPlaying = true;
-        timer = setInterval(initTimer, 1000);
+function flio_carrrds({ target: clickedCard }) {
+    if (!isPla___) {
+        isPla___ = true;
+        timer = setInterval(intialTIMER, 1000);
     }
-    if (clickedCard !== cardOne && !disableDeck && timeLeft > 0) {
-        flips++;
-        flipsTag.innerText = flips;
+    if (clickedCard !== cardOne && !disableDeck && leftTIME > 0) {
+        current_flips++;
+        FLIPS.innerText = current_flips;
         clickedCard.classList.add("flip");
         if (!cardOne) {
             return cardOne = clickedCard;
@@ -35,18 +40,18 @@ function flipCard({ target: clickedCard }) {
         disableDeck = true;
         let cardOneImg = cardOne.querySelector(".back-view img").src,
             cardTwoImg = cardTwo.querySelector(".back-view img").src;
-        matchCards(cardOneImg, cardTwoImg);
+        MATCHED___CARD(cardOneImg, cardTwoImg);
     }
 }
 
-function matchCards(img1, img2) {
-    if (img1 === img2) {
+function MATCHED___CARD(firstIMG, secondIMG) {
+    if (firstIMG === secondIMG) {
         matchedCard++;
-        if (matchedCard == 6 && timeLeft > 0) {
+        if (matchedCard == 6 && leftTIME > 0) {
             return clearInterval(timer);
         }
-        cardOne.removeEventListener("click", flipCard);
-        cardTwo.removeEventListener("click", flipCard);
+        cardOne.removeEventListener("click", flio_carrrds);
+        cardTwo.removeEventListener("click", flio_carrrds);
         cardOne = cardTwo = "";
         return disableDeck = false;
     }
@@ -64,32 +69,32 @@ function matchCards(img1, img2) {
     }, 1200);
 }
 
-function shuffleCard() {
-    timeLeft = maxTime;
-    flips = matchedCard = 0;
+function SHUffle_caRDS() {
+    leftTIME = max_TIME;
+    current_flips = matchedCard = 0;
     cardOne = cardTwo = "";
     clearInterval(timer);
-    timeTag.innerText = timeLeft;
-    flipsTag.innerText = flips;
-    disableDeck = isPlaying = false;
+    time__.innerText = leftTIME;
+    FLIPS.innerText = current_flips;
+    disableDeck = isPla___ = false;
 
-    let arr = ['img-1','img-2','img-3','img-4','img-5','img-6','img-1','img-2','img-3','img-4','img-5','img-6'];
-    arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+    let aRrAY__ = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
+    aRrAY__.sort(() => Math.random() > 0.5 ? 1 : -1);
 
-    cards.forEach((card, index) => {
+    caRDS__.forEach((card, index) => {
         card.classList.remove("flip");
         let imgTag = card.querySelector(".back-view img");
         setTimeout(() => {
-            imgTag.src = `images/${arr[index]}.jpg`;
+            imgTag.src = `images/${aRrAY__[index]}.jpg`;
         }, 500);
-        card.addEventListener("click", flipCard);
+        card.addEventListener("click", flio_carrrds);
     });
 }
 
-shuffleCard();
+SHUffle_caRDS();
 
-refreshBtn.addEventListener("click", shuffleCard);
+rfsBTN.addEventListener("click", SHUffle_caRDS);
 
-cards.forEach(card => {
-    card.addEventListener("click", flipCard);
+caRDS__.forEach(card => {
+    card.addEventListener("click", flio_carrrds);
 });
