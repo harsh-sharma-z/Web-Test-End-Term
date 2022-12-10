@@ -1,11 +1,8 @@
-/* Import Google Font - Poppins */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
@@ -43,8 +40,8 @@ p {
 }
 
 .cards {
-    height: 350px;
-    width: 350px;
+    height: 600px;
+    width: 600px;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -95,7 +92,7 @@ p {
 }
 
 .card .front-view img {
-    max-width: 17px;
+    max-width: 600px;
 }
 
 .card .back-view {
@@ -142,56 +139,15 @@ p {
 
 .details button {
     cursor: pointer;
-    font-size: 14px;
-    color: #6563ff;
-    border-radius: 4px;
-    padding: 4px 11px;
-    background: #fff;
-    border: 2px solid #6563ff;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 18px;
+    background: linear-gradient(to right bottom, rgb(215, 7, 198), rgb(7, 7, 148));
     transition: 0.3s ease;
 }
 
 .details button:hover {
-    color: #fff;
-    background: #6563ff;
-}
-
-@media screen and (max-width: 700px) {
-    .cards {
-        height: 350px;
-        width: 350px;
-    }
-    .card .front-view img {
-        max-width: 16px;
-    }
-    .card .back-view img {
-        max-width: 40px;
-    }
-}
-
-@media screen and (max-width: 530px) {
-    .cards {
-        height: 300px;
-        width: 300px;
-    }
-    .card .back-view img {
-        max-width: 35px;
-    }
-    .details {
-        margin-top: 10px;
-        padding: 0 15px;
-        height: calc(100% / 4 - 20px);
-    }
-    .details p {
-        height: 15px;
-        font-size: 17px;
-        padding-right: 13px;
-    }
-    .details button {
-        font-size: 13px;
-        padding: 5px 10px;
-        border: none;
-        color: #fff;
-        background: #6563ff;
-    }
+    transform: scale(1.05);
 }
